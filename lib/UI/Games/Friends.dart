@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../gameRoom/Createroom.dart';
+
+import 'Room/Create.dart';
 
 class Friends extends StatefulWidget {
   const Friends({super.key});
@@ -34,7 +35,7 @@ class _FriendsState extends State<Friends> {
       builder: (BuildContext context) {
         return AlertDialog(
           // Dialog title
-          title: Center(
+          title: const Center(
             child: Text(
               'Enter Room Code',
               style: TextStyle(
@@ -49,26 +50,26 @@ class _FriendsState extends State<Friends> {
           // Dialog content
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
+            children: <Widget>[
               // TextField for entering the room code
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 39.9),
+                padding: const EdgeInsets.symmetric(horizontal: 39.9),
                 child: TextField(
                   controller: _roomCodeController,
                   decoration: InputDecoration(
                     hintText: 'Type here....',
                     fillColor: Colors.yellow[100],
                     filled: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
-                    contentPadding: EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(
                       vertical: 17.0,
                       horizontal: 15.0,
                     ),
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       fontSize: 15.0,
                       fontFamily: 'mafia',
                       fontWeight: FontWeight.bold,
@@ -88,7 +89,7 @@ class _FriendsState extends State<Friends> {
                   padding: const EdgeInsets.only(top: 10),
                   child: Text(
                     errorMessage!,
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   ),
                 ),
             ],
@@ -98,7 +99,7 @@ class _FriendsState extends State<Friends> {
             // Cancel button
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(
+              child: const Text(
                 'Cancel',
                 style: TextStyle(
                   color: Colors.green,
@@ -111,7 +112,7 @@ class _FriendsState extends State<Friends> {
               onPressed: () {
                 // Validate the entered room code
                 setState(() {
-                  String enteredCode = _roomCodeController.text;
+                  final String enteredCode = _roomCodeController.text;
                   if (validateRoomCode(enteredCode)) {
                     // Handle successful room code validation (e.g., join room)
                     print('Room code validated: $enteredCode');
@@ -122,7 +123,7 @@ class _FriendsState extends State<Friends> {
                   }
                 });
               },
-              child: Text(
+              child: const Text(
                 'Join',
                 style: TextStyle(
                   color: Colors.green,
@@ -140,22 +141,22 @@ class _FriendsState extends State<Friends> {
   Widget build(BuildContext context) {
     return Container(
       // Set background image for the container
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/home.png"),
+          image: AssetImage('assets/home.png'),
           fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
-          children: [
-            SizedBox(height: 70),
+          children: <Widget>[
+            const SizedBox(height: 70),
             // Title text
             Padding(
               padding: const EdgeInsets.only(left: 60),
               child: Text(
-                "    Create\nFree Room",
+                '    Create\nFree Room',
                 style: TextStyle(
                   fontSize: 35.0,
                   fontFamily: 'mafia',
@@ -166,15 +167,15 @@ class _FriendsState extends State<Friends> {
             ),
             // Row for create and join buttons
             Row(
-              children: [
+              children: <Widget>[
                 // Create room button
                 Expanded(
                   child: IconButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => Room(),
+                        MaterialPageRoute<Widget>(
+                          builder: (BuildContext context) => const Room(),
                         ),
                       );
                     },
